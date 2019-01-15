@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const userService = require('../Services/UserService.js');
 //const userModel = require('../Models/User.js');
+const authMiddleware = require('../Middlewares/AuthMiddleware.js');
 
-router.get('/api/:id', function(req, res){
+router.get('/api/user/:id', authMiddleware, function(req, res){
 
     // userModel.find(1, (error, result) => {
     //     console.log('error: ' + error);
@@ -49,7 +50,7 @@ router.get('/api/:id', function(req, res){
      });
  });
 
- router.post('/api/user', (req, res) => {
+ router.post('/api/user', authMiddleware, (req, res) => {
     userService.save(req.body, (error, result) => {
 
         if(error)
@@ -72,8 +73,8 @@ router.get('/api/:id', function(req, res){
     });
  });
 
- router.put('/api/user', (req, res) => {
-    userService.get(req.body.id, (error, result) => {
+ router.put('/api/user/:id', authMiddleware, (req, res) => {
+    userService.get(req.id, (error, result) => {
 
         if(error)
              return res.json(
@@ -103,7 +104,7 @@ router.get('/api/:id', function(req, res){
     })
  });
 
- router.delete('/api/user/:id', (req, res) => {
+ router.delete('/api/user/:id', authMiddleware, (req, res) => {
     userService.delete(req.body.id, (error, result) => {
 
         if(error)

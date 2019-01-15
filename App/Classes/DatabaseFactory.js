@@ -14,7 +14,6 @@ module.exports = class DatabaseFactory{
         });
 
         DatabaseFactory.con = conn;
-        
         return conn;
     }
 }

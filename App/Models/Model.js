@@ -116,4 +116,27 @@ module.exports = class Model{
         return model;
     }
 
+    static async getAsync(id){
+        var model = this._getModel();
+        var query = `SELECT * FROM ${model.table} WHERE id = ${id}`;
+        console.log(query);
+        return new Promise( (resolve, reject) => {
+            conn.query(query, (error, result) => {
+                if(error) return reject(error);
+                return resolve(result);
+            });
+        });
+    }
+
+    static async findByFieldAsync(field, value){
+        var model = this._getModel();
+        var query = `SELECT * FROM ${model.table} WHERE ${field} = '${value}'`;
+        console.log(query);
+        return new Promise( (resolve, reject) => {
+            conn.query(query, (error, result) => {
+                if(error) return reject(error);
+                return resolve(result);
+            });
+        });
+    }
 }

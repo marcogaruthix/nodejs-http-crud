@@ -5,7 +5,7 @@ const app = express();
 const serverHttp = require('http').createServer(app);
 const io = require('socket.io')(serverHttp);
 
-require('./routes.js');
+//require('./routes.js');
 
 //make a middleware for provide all files on public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 });
 
 app.use(require('./App/Controllers/UserController.js'));
+app.use(require('./App/Controllers/AuthController.js'));
 
 app.get('/chat', (req, res) => {
     return res.render('chat.html');
