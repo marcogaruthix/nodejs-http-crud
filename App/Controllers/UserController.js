@@ -3,7 +3,7 @@ const router = express.Router();
 const userService = require('../Services/UserService.js');
 //const userModel = require('../Models/User.js');
 
-router.get('/:id', function(req, res){
+router.get('/api/:id', function(req, res){
 
     // userModel.find(1, (error, result) => {
     //     console.log('error: ' + error);
@@ -49,7 +49,7 @@ router.get('/:id', function(req, res){
      });
  });
 
- router.post('/user', (req, res) => {
+ router.post('/api/user', (req, res) => {
     userService.save(req.body, (error, result) => {
 
         if(error)
@@ -72,7 +72,7 @@ router.get('/:id', function(req, res){
     });
  });
 
- router.put('/user', (req, res) => {
+ router.put('/api/user', (req, res) => {
     userService.get(req.body.id, (error, result) => {
 
         if(error)
@@ -103,7 +103,7 @@ router.get('/:id', function(req, res){
     })
  });
 
- router.delete('/user/:id', (req, res) => {
+ router.delete('/api/user/:id', (req, res) => {
     userService.delete(req.body.id, (error, result) => {
 
         if(error)
